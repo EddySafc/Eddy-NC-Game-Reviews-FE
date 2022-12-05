@@ -7,6 +7,7 @@ import Reviews from "./components/Reviews";
 
 function App() {
   const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   return (
     <BrowserRouter>
@@ -16,7 +17,14 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Reviews setReviews={setReviews} reviews={reviews} />}
+            element={
+              <Reviews
+                setReviews={setReviews}
+                reviews={reviews}
+                loading={loading}
+                setLoading={setLoading}
+              />
+            }
           />
         </Routes>
       </div>
