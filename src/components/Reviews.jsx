@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 import { getReviews } from "../requests";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
-const Reviews = ({ reviews, setReviews, loading, setLoading }) => {
+const Reviews = ({ reviews, setReviews }) => {
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     getReviews().then((data) => {
       setReviews(data);
@@ -18,11 +21,15 @@ const Reviews = ({ reviews, setReviews, loading, setLoading }) => {
         <ul>
           {reviews.map((review) => {
             return (
-              <li class="listed-review" key={review.review_id}>
+              <li className="listed-review" key={review.review_id}>
                 <p>{review.title}</p>
                 <p>{review.owner}</p>
-                <p>{review.category}</p>
                 <img id="review-image" src={review.review_img_url}></img>
+                <p>
+                  <Link to={`/reviews/${review.review_id}`}>
+                    See Further Details
+                  </Link>
+                </p>
               </li>
             );
           })}

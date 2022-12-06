@@ -3,11 +3,11 @@
   background-color: rgb(61, 136, 71);
   font-variant: small-caps;
   font-family: monospace;
-  font-size:x-large;
+  font-size:large;
 }
 
 h1{
-  font-size: xx-large;
+  font-size: xxx-large;
 }
 
 #review-image{
@@ -29,7 +29,25 @@ ul{
   margin: 10px
 }
 
+.single_review_image{
+  width: 80%;
+  height: auto;
+}
+
 @media only screen and (min-width: 768px) {
+
+  .App {
+    text-align: center;
+    background-color: rgb(61, 136, 71);
+    font-variant: small-caps;
+    font-family: monospace;
+    font-size:xx-large;
+  }
+
+  .single_review_image{
+    width: 80%;
+    height: auto;
+  }
 
   .listed-review{
     border: 2px solid black;
