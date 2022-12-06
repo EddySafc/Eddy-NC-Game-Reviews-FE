@@ -15,3 +15,13 @@ export const getReviewsById = (review_id) => {
       return reviews.data;
     });
 };
+
+export const getReviewsCommentsById = (review_id) => {
+  return axios
+    .get(
+      `https://wandering-pink-gloves.cyclic.app/api/reviews/${review_id}/comments`
+    )
+    .then((reviews) => {
+      return reviews.data;
+    });
+};

@@ -5,10 +5,12 @@ import Header from "./components/Header";
 import Nav from "./components/Nav";
 import Reviews from "./components/Reviews";
 import SingleReview from "./components/SingleReview";
+import ReviewComments from "./components/ReviewComments";
 
 function App() {
   const [reviews, setReviews] = useState([]);
   const [review, setReview] = useState({});
+  const [comments, setComments] = useState([]);
 
   return (
     <BrowserRouter>
@@ -23,6 +25,12 @@ function App() {
           <Route
             path="/reviews/:review_id"
             element={<SingleReview review={review} setReview={setReview} />}
+          />
+          <Route
+            path="/reviews/:review_id/comments"
+            element={
+              <ReviewComments comments={comments} setComments={setComments} />
+            }
           />
         </Routes>
       </div>

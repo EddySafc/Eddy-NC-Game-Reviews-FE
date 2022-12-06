@@ -1,9 +1,11 @@
 .App {
   text-align: center;
+  align-items: center;
   background-color: rgb(61, 136, 71);
   font-variant: small-caps;
   font-family: monospace;
   font-size:large;
+  padding: 5px;
 }
 
 h1{
@@ -26,12 +28,22 @@ ul{
   border: 2px solid black;
   border-radius: 15px;
   width: 300px;
-  margin: 10px
+  margin: 10px;
+  background-color: rgb(181, 217, 146);
 }
 
 .single_review_image{
   width: 80%;
   height: auto;
+}
+
+.comment_list{
+  border: 2px solid black;
+  margin: 15px;
+  border-radius: 10px;
+  width: 80%;
+  height: auto;
+  background-color: rgb(181, 217, 146);
 }
 
 @media only screen and (min-width: 768px) {
