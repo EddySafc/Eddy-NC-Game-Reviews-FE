@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const Reviews = ({ reviews, setReviews, loading, setLoading }) => {
   useEffect(() => {
+    setLoading(true);
     getReviews().then((data) => {
       setReviews(data);
       setLoading(false);

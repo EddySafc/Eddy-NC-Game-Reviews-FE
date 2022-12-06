@@ -31,7 +31,7 @@ ul{
 
 .single_review_image{
   width: 80%;
-  height: 350px;
+  height: auto;
 }
 
 @media only screen and (min-width: 768px) {

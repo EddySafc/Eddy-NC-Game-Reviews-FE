@@ -30,7 +30,14 @@ function App() {
           />
           <Route
             path="/reviews/:review_id"
-            element={<SingleReview review={review} setReview={setReview} />}
+            element={
+              <SingleReview
+                review={review}
+                setReview={setReview}
+                loading={loading}
+                setLoading={setLoading}
+              />
+            }
           />
         </Routes>
       </div>
