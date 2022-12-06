@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom";
 import { getReviewsById } from "../requests";
 import { useEffect } from "react";
+import { useState } from "react";
 
-const SingleReview = ({ review, setReview, loading, setLoading }) => {
+const SingleReview = ({ review, setReview }) => {
+  const [loading, setLoading] = useState(true);
   let review_id = useParams().review_id;
   useEffect(() => {
-    setLoading(true);
     getReviewsById(review_id).then((data) => {
       setReview(data);
       setLoading(false);

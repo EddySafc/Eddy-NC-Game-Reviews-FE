@@ -8,7 +8,6 @@ import SingleReview from "./components/SingleReview";
 
 function App() {
   const [reviews, setReviews] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [review, setReview] = useState({});
 
   return (
@@ -19,25 +18,11 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={
-              <Reviews
-                setReviews={setReviews}
-                reviews={reviews}
-                loading={loading}
-                setLoading={setLoading}
-              />
-            }
+            element={<Reviews setReviews={setReviews} reviews={reviews} />}
           />
           <Route
             path="/reviews/:review_id"
-            element={
-              <SingleReview
-                review={review}
-                setReview={setReview}
-                loading={loading}
-                setLoading={setLoading}
-              />
-            }
+            element={<SingleReview review={review} setReview={setReview} />}
           />
         </Routes>
       </div>

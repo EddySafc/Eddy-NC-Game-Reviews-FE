@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { getReviews } from "../requests";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-const Reviews = ({ reviews, setReviews, loading, setLoading }) => {
+const Reviews = ({ reviews, setReviews }) => {
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    setLoading(true);
     getReviews().then((data) => {
       setReviews(data);
       setLoading(false);
