@@ -4,10 +4,12 @@ import { useState } from "react";
 import Header from "./components/Header";
 import Nav from "./components/Nav";
 import Reviews from "./components/Reviews";
+import SingleReview from "./components/SingleReview";
 
 function App() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [review, setReview] = useState({});
 
   return (
     <BrowserRouter>
@@ -25,6 +27,10 @@ function App() {
                 setLoading={setLoading}
               />
             }
+          />
+          <Route
+            path="/reviews/:review_id"
+            element={<SingleReview review={review} setReview={setReview} />}
           />
         </Routes>
       </div>
