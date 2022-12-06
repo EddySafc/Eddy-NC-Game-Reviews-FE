@@ -22,11 +22,7 @@ const Reviews = ({ reviews, setReviews, loading, setLoading }) => {
                 <p>{review.title}</p>
                 <p>{review.owner}</p>
                 <p>{review.category}</p>
-                <img
-                  id="review-image"
-                  src={review.review_img_url}
-                  alt="no image available"
-                ></img>
+                <img id="review-image" src={review.review_img_url}></img>
               </li>
             );
           })}
