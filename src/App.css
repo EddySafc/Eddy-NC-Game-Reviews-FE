@@ -41,6 +41,8 @@ ul{
   border: 2px solid black;
   margin: 15px;
   border-radius: 10px;
+  width: 80%;
+  height: auto;
   background-color: rgb(181, 217, 146);
 }
 
