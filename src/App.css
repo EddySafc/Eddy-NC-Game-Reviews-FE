@@ -1,6 +1,13 @@
 .App {
   text-align: center;
   background-color: rgb(61, 136, 71);
+  font-variant: small-caps;
+  font-family: monospace;
+  font-size:x-large;
+}
+
+h1{
+  font-size: xx-large;
 }
 
 #review-image{
@@ -8,7 +15,28 @@
   height: 133px;
 }
 
+ul{
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.listed-review{
+  border: 2px solid black;
+  border-radius: 15px;
+  width: 300px;
+  margin: 10px
+}
+
 @media only screen and (min-width: 768px) {
+
+  .listed-review{
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 400px;
+    margin: 10px
+  }
 
   #review-image{
     width: 300px;

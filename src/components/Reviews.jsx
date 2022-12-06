@@ -18,7 +18,7 @@ const Reviews = ({ reviews, setReviews, loading, setLoading }) => {
         <ul>
           {reviews.map((review) => {
             return (
-              <li key={review.review_id}>
+              <li class="listed-review" key={review.review_id}>
                 <p>{review.title}</p>
                 <p>{review.owner}</p>
                 <p>{review.category}</p>
