@@ -1,38 +1,53 @@
 .App {
   text-align: center;
+  background-color: rgb(61, 136, 71);
+  font-variant: small-caps;
+  font-family: monospace;
+  font-size:x-large;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1{
+  font-size: xx-large;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#review-image{
+  width: 200px;
+  height: 133px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+ul{
+  list-style: none;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
-.App-link {
-  color: #61dafb;
+.listed-review{
+  border: 2px solid black;
+  border-radius: 15px;
+  width: 300px;
+  margin: 10px
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media only screen and (min-width: 768px) {
+
+  .listed-review{
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 400px;
+    margin: 10px
   }
-  to {
-    transform: rotate(360deg);
+
+  #review-image{
+    width: 300px;
+    height: 200px;
   }
+
+  ul{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
 }
