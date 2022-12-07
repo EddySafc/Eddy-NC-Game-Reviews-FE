@@ -27,7 +27,7 @@ const Users = () => {
         <ul>
           {users.map((user) => {
             return (
-              <li key={user.username}>
+              <li key={user.username} className="user">
                 <p>{user.username}</p>
                 <p>{user.name}</p>
                 <p>
@@ -40,7 +40,7 @@ const Users = () => {
                   </button>
                 </p>
 
-                <img src={user.avatar_url}></img>
+                <img src={user.avatar_url} className="user_image"></img>
               </li>
             );
           })}

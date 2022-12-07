@@ -8,6 +8,14 @@ export const getReviews = () => {
     });
 };
 
+export const getCategories = () => {
+  return axios
+    .get("https://wandering-pink-gloves.cyclic.app/api/categories")
+    .then((reviews) => {
+      return reviews.data;
+    });
+};
+
 export const getUsers = () => {
   return axios
     .get("https://wandering-pink-gloves.cyclic.app/api/users")

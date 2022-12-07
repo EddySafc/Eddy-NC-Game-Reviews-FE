@@ -1,7 +1,10 @@
 import { patchReviewVotes } from "../requests";
 import { useState } from "react";
+import { useContext } from "react";
+import { logInContext } from "./Users";
 
 export default function Votes({ review_id, review }) {
+  const { loggedInUser, setLoggedInUser } = useContext(logInContext);
   const [voteCount, setVoteCount] = useState(review.votes);
   const [upDisabled, setUpDisabled] = useState(false);
   const [downDisabled, setDownDisabled] = useState(false);
@@ -34,6 +37,20 @@ export default function Votes({ review_id, review }) {
   };
 
   if (err) return <p>{err}</p>;
+  if (loggedInUser === "") {
+    return (
+      <div>
+        <p>Votes:{voteCount}</p>
+        <button onClick={handleClickUp} disabled>
+          UpVote
+        </button>
+        <button onClick={handleClickDown} disabled>
+          DownVote
+        </button>
+        <p>Must be Logged in to vote</p>
+      </div>
+    );
+  }
   return (
     <div>
       <p>Votes:{voteCount}</p>

@@ -8,20 +8,30 @@ import SingleReview from "./components/SingleReview";
 import ReviewComments from "./components/ReviewComments";
 import Users from "./components/Users";
 import { logInContext } from "./components/Users";
+import DisplayCategories from "./components/DisplayCategories";
 
 function App() {
   const [reviews, setReviews] = useState([]);
   const [review, setReview] = useState({});
   const [comments, setComments] = useState([]);
   const [loggedInUser, setLoggedInUser] = useState("");
+  const [categories, setCategories] = useState([]);
 
   return (
     <BrowserRouter>
       <logInContext.Provider value={{ loggedInUser, setLoggedInUser }}>
         <div className="App">
           <Header />
-          <Nav />
+          <Nav categories={categories} setCategories={setCategories} />
           <Routes>
+            {categories.map((category) => {
+              return (
+                <Route
+                  path={`/category/${category.slug}`}
+                  element={<DisplayCategories chosenCategory={category.slug} />}
+                />
+              );
+            })}
             <Route
               path="/"
               element={<Reviews setReviews={setReviews} reviews={reviews} />}

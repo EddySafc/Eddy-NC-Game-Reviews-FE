@@ -9,7 +9,7 @@
 }
 
 h1{
-  font-size: xxx-large;
+  font-size: xx-large;
 }
 
 #review-image{
@@ -46,11 +46,57 @@ ul{
   background-color: rgb(181, 217, 146);
 }
 
+.category_links{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+
+#specific_category_review{
+  border: 2px solid black;
+  border-radius: 15px;
+  width: 260px;
+  margin: 5px;
+  background-color: rgb(181, 217, 146);
+}
+
+.specific_category_review{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;   
+}
+
+.user_image{
+  width: 170px;
+  height: auto;
+}
+
+.user{border: 2px solid black;
+  border-radius: 15px;
+  width: auto;
+  margin: 10px;
+  background-color: rgb(181, 217, 146)}
+
+
+
 @media only screen and (min-width: 768px) {
+
+h1{
+  font-size: xxx-large;
+}
+
+  .category_links{
+    display: flex;
+    flex-wrap: wrap;
+    
+  }
+  
+ 
 
   .App {
     text-align: center;
-    background-color: rgb(61, 136, 71);
+    background-color: rgb(49, 123, 59);
     font-variant: small-caps;
     font-family: monospace;
     font-size:xx-large;
@@ -66,6 +112,14 @@ ul{
     border-radius: 10px;
     width: 400px;
     margin: 10px
+  }
+  #specific_category_review{
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 400px;
+    margin: 10px;
+    background-color: rgb(181, 217, 146);
+    
   }
 
   #review-image{

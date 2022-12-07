@@ -1,10 +1,18 @@
 import { Link } from "react-router-dom";
+import Categories from "./Categories";
 
-const Nav = () => {
+const Nav = ({ categories, setCategories }) => {
   return (
-    <nav className="Nav">
-      <Link to="/">Reviews -</Link>
-      <Link to="/users">- LogIn</Link>
+    <nav>
+      <section className="nav">
+        <div>
+          <Link to="/"> All Reviews</Link>
+          <Link to="/users"> LogIn</Link>
+        </div>
+        <div>
+          <Categories categories={categories} setCategories={setCategories} />
+        </div>
+      </section>
     </nav>
   );
 };
