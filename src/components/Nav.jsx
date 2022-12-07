@@ -4,6 +4,7 @@ const Nav = () => {
   return (
     <nav className="Nav">
       <Link to="/"> Reviews -</Link>
+      <Link to="/users">- LogIn</Link>
     </nav>
   );
 };
