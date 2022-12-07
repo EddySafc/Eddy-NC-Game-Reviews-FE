@@ -10,23 +10,27 @@ export default function Votes({ review_id, review }) {
   const handleClickUp = () => {
     setVoteCount((currCount) => currCount + 1);
     setErr(null);
-    patchReviewVotes(review_id, 1).catch(() => {
-      setVoteCount((currCount) => currCount - 1);
-      setErr("something went wrong please try again");
-    });
     setUpDisabled(true);
     setDownDisabled(false);
+    patchReviewVotes(review_id, 1).catch(() => {
+      setVoteCount((currCount) => currCount - 1);
+      setUpDisabled(false);
+      setDownDisabled(true);
+      setErr("something went wrong please try again");
+    });
   };
 
   const handleClickDown = () => {
     setVoteCount((currCount) => currCount - 1);
     setErr(null);
-    patchReviewVotes(review_id, -1).catch(() => {
-      setVoteCount((currCount) => currCount + 1);
-      setErr("something went wrong please try again");
-    });
     setDownDisabled(true);
     setUpDisabled(false);
+    patchReviewVotes(review_id, -1).catch(() => {
+      setVoteCount((currCount) => currCount + 1);
+      setDownDisabled(false);
+      setUpDisabled(true);
+      setErr("something went wrong please try again");
+    });
   };
 
   if (err) return <p>{err}</p>;
