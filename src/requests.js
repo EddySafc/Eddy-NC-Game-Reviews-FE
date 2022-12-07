@@ -25,3 +25,10 @@ export const getReviewsCommentsById = (review_id) => {
       return reviews.data;
     });
 };
+
+export const patchReviewVotes = (review_id, voteChange) => {
+  return axios.patch(
+    `https://wandering-pink-gloves.cyclic.app/api/reviews/${review_id}`,
+    { inc_votes: voteChange }
+  );
+};

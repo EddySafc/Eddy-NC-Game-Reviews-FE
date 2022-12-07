@@ -5,6 +5,7 @@ import { useState } from "react";
 
 const ReviewComments = ({ comments, setComments }) => {
   const [loading, setLoading] = useState(true);
+
   let review_id = useParams().review_id;
 
   useEffect(() => {
@@ -13,6 +14,7 @@ const ReviewComments = ({ comments, setComments }) => {
       setLoading(false);
     });
   }, []);
+
   if (loading === false) {
     if (!comments.length) {
       return <section>No Comments For This Review</section>;

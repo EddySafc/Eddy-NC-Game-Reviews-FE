@@ -3,6 +3,7 @@ import { getReviewsById } from "../requests";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Votes from "./Votes";
 
 const SingleReview = ({ review, setReview }) => {
   const [loading, setLoading] = useState(true);
@@ -22,8 +23,10 @@ const SingleReview = ({ review, setReview }) => {
         <p>Category:{review.category}</p>
         <p>Designer:{review.designer}</p>
         <p>Created at:{review.created_at}</p>
-        <p>Votes:{review.votes}</p>
         <p>Comment Count:{review.comment_count}</p>
+
+        <Votes review_id={review_id} review={review} />
+
         <p>
           <Link to={`/reviews/${review.review_id}/comments`}>
             View Comments
