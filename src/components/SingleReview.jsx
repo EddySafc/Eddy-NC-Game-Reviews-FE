@@ -25,8 +25,6 @@ const SingleReview = ({ review, setReview }) => {
         <p>Created at:{review.created_at}</p>
         <p>Comment Count:{review.comment_count}</p>
 
-        <Votes review_id={review_id} review={review} />
-
         <p>
           <Link to={`/reviews/${review.review_id}/comments`}>
             View Comments
