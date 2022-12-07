@@ -13,7 +13,7 @@ function App() {
   const [reviews, setReviews] = useState([]);
   const [review, setReview] = useState({});
   const [comments, setComments] = useState([]);
-  const [loggedInUser, setLoggedInUser] = useState("Nobody");
+  const [loggedInUser, setLoggedInUser] = useState("");
 
   return (
     <BrowserRouter>
