@@ -40,3 +40,13 @@ export const patchReviewVotes = (review_id, voteChange) => {
     { inc_votes: voteChange }
   );
 };
+
+export const postReviewComment = (username, comment, review_id) => {
+  return axios.post(
+    `https://wandering-pink-gloves.cyclic.app/api/reviews/${review_id}/comments`,
+    {
+      username: username,
+      body: comment,
+    }
+  );
+};

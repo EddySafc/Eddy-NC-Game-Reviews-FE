@@ -2,6 +2,7 @@ import { getReviewsCommentsById } from "../requests";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
+import AddComment from "./AddComment";
 
 const ReviewComments = ({ comments, setComments }) => {
   const [loading, setLoading] = useState(true);
@@ -17,10 +18,16 @@ const ReviewComments = ({ comments, setComments }) => {
 
   if (loading === false) {
     if (!comments.length) {
-      return <section>No Comments For This Review</section>;
+      return (
+        <section>
+          No Comments For This Review
+          <AddComment />
+        </section>
+      );
     } else
       return (
         <section>
+          <AddComment />
           <ul>
             {comments.map((comment) => {
               return (
