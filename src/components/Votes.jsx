@@ -8,17 +8,23 @@ export default function Votes({ review_id, review }) {
   const [voteCount, setVoteCount] = useState(review.votes);
   const [upDisabled, setUpDisabled] = useState(false);
   const [downDisabled, setDownDisabled] = useState(false);
+  const [upClick, setUpClick] = useState(null);
+  const [downClick, setDownClick] = useState(null);
   const [err, setErr] = useState(null);
 
   const handleClickUp = () => {
     setVoteCount((currCount) => currCount + 1);
     setErr(null);
     setUpDisabled(true);
-    setDownDisabled(false);
+    setDownDisabled(true);
+    setUpClick(true);
+    setDownClick(false);
     patchReviewVotes(review_id, 1).catch(() => {
       setVoteCount((currCount) => currCount - 1);
       setUpDisabled(false);
-      setDownDisabled(true);
+      setDownDisabled(false);
+      setUpClick(false);
+      setDownClick(null);
       setErr("something went wrong please try again");
     });
   };
@@ -27,13 +33,48 @@ export default function Votes({ review_id, review }) {
     setVoteCount((currCount) => currCount - 1);
     setErr(null);
     setDownDisabled(true);
-    setUpDisabled(false);
+    setUpDisabled(true);
+    setDownClick(true);
+    setUpClick(false);
     patchReviewVotes(review_id, -1).catch(() => {
       setVoteCount((currCount) => currCount + 1);
       setDownDisabled(false);
-      setUpDisabled(true);
+      setUpDisabled(false);
+      setDownClick(false);
+      setUpClick(null);
       setErr("something went wrong please try again");
     });
+  };
+
+  const handleUndoVote = () => {
+    if (upClick === true) {
+      setVoteCount((currCount) => currCount - 1);
+      setErr(null);
+      setDownDisabled(false);
+      setUpDisabled(false);
+      setUpClick(null);
+      patchReviewVotes(review_id, -1).catch(() => {
+        setVoteCount((currCount) => currCount + 1);
+        setDownDisabled(true);
+        setUpDisabled(true);
+        setUpClick(false);
+        setErr("something went wrong please try again");
+      });
+    }
+    if (downClick === true) {
+      setVoteCount((currCount) => currCount + 1);
+      setErr(null);
+      setUpDisabled(false);
+      setDownDisabled(false);
+      setDownClick(null);
+      patchReviewVotes(review_id, 1).catch(() => {
+        setVoteCount((currCount) => currCount - 1);
+        setUpDisabled(true);
+        setDownDisabled(true);
+        setDownClick(false);
+        setErr("something went wrong please try again");
+      });
+    }
   };
 
   if (err) return <p>{err}</p>;
@@ -46,6 +87,9 @@ export default function Votes({ review_id, review }) {
         </button>
         <button onClick={handleClickDown} disabled>
           DownVote
+        </button>
+        <button onClick={handleUndoVote} disabled>
+          Undo Vote
         </button>
         <p>Must be Logged in to vote</p>
       </div>
@@ -60,6 +104,7 @@ export default function Votes({ review_id, review }) {
       <button onClick={handleClickDown} disabled={downDisabled}>
         DownVote
       </button>
+      <button onClick={handleUndoVote}>Undo Vote</button>
     </div>
   );
 }

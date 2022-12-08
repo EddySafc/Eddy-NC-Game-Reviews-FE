@@ -49,6 +49,7 @@ ul{
 .category_links{
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 
@@ -89,7 +90,7 @@ h1{
   .category_links{
     display: flex;
     flex-wrap: wrap;
-    
+    justify-content: space-evenly;
   }
   
  

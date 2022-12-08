@@ -10,6 +10,7 @@ const Users = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const { loggedInUser, setLoggedInUser } = useContext(logInContext);
+  const [logIn, setLogIn] = useState("");
 
   useEffect(() => {
     getUsers().then((data) => {
@@ -21,9 +22,12 @@ const Users = () => {
   if (loading === true) {
     return <section>Loading...</section>;
   }
-  if (loading === false)
+  if (loading === false) {
+    if (logIn !== "") {
+      return <section>{logIn}</section>;
+    }
     return (
-      <section>
+      <section id="top">
         <ul>
           {users.map((user) => {
             return (
@@ -34,6 +38,7 @@ const Users = () => {
                   <button
                     onClick={() => {
                       setLoggedInUser(user.username);
+                      setLogIn(`logged in as ${user.username}`);
                     }}
                   >
                     LogIn
@@ -47,6 +52,7 @@ const Users = () => {
         </ul>
       </section>
     );
+  }
 };
 
 export default Users;

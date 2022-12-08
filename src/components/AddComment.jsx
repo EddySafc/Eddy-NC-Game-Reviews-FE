@@ -4,7 +4,7 @@ import { logInContext } from "./Users";
 import { postReviewComment } from "../requests";
 import { useParams } from "react-router-dom";
 
-const AddComment = () => {
+const AddComment = ({ comments, setComments }) => {
   const { loggedInUser, setLoggedInUser } = useContext(logInContext);
   const [newComment, setNewComment] = useState("");
   const [commentExists, setCommentExists] = useState(true);
@@ -17,7 +17,11 @@ const AddComment = () => {
     if (newComment !== "") {
       setCommentExists(true);
       setPostingComment(true);
-      postReviewComment(loggedInUser, newComment, review_id);
+      postReviewComment(loggedInUser, newComment, review_id).then((comment) => {
+        setComments((currComments) => {
+          return [comment, ...currComments];
+        });
+      });
       setPostingComment(false);
     }
     if (newComment === "") {
@@ -84,7 +88,7 @@ const AddComment = () => {
   if (postingComment === false && commentExists === true) {
     return (
       <section>
-        {buttonDisabledForm}
+        {form}
         <p>Comment posted</p>
       </section>
     );
