@@ -17,7 +17,7 @@ const SingleReview = ({ review, setReview }) => {
   }, []);
   if (loading === false) {
     return (
-      <section>
+      <section className="ind_review">
         <p>Owner:{review.owner}</p>
         <p>Title:{review.title}</p>
         <p>Review:{review.review_body}</p>

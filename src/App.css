@@ -79,6 +79,16 @@ ul{
   margin: 10px;
   background-color: rgb(181, 217, 146)}
 
+.ind_review{
+
+  padding: 80px;
+  border: 2px solid black;
+  border-radius: 15px;
+  width: auto;
+  margin: 10px;
+  background-color: rgb(181, 217, 146)
+}
+
 
 
 @media only screen and (min-width: 768px) {
