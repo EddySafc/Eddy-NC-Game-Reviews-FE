@@ -3,6 +3,7 @@ import { getReviewsById } from "../requests";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import moment from "moment";
 import Votes from "./Votes";
 
 const SingleReview = ({ review, setReview }) => {
@@ -16,13 +17,15 @@ const SingleReview = ({ review, setReview }) => {
   }, []);
   if (loading === false) {
     return (
-      <section>
+      <section className="ind_review">
         <p>Owner:{review.owner}</p>
         <p>Title:{review.title}</p>
         <p>Review:{review.review_body}</p>
         <p>Category:{review.category}</p>
         <p>Designer:{review.designer}</p>
-        <p>Created at:{review.created_at}</p>
+        <p>
+          Created at:{moment(review.created_at).format(`DD/MM/YY [at] HH:mm`)}
+        </p>
         <p>Comment Count:{review.comment_count}</p>
         <Votes review_id={review_id} review={review} />
         <p>
