@@ -2,46 +2,27 @@ import { useEffect } from "react";
 import { getReviews } from "../requests";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import moment from "moment";
 
-const Reviews = ({ reviews, setReviews }) => {
+const Reviews = ({
+  reviews,
+  setReviews,
+  sortByOrder,
+  setSortByOrder,
+  sortByProperty,
+  setSortByProperty,
+}) => {
   const [loading, setLoading] = useState(true);
-  const [sort, setSort] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+
   useEffect(() => {
-    getReviews().then((data) => {
-      if (sort === "newest-oldest" || sort === null) {
-        setReviews(
-          [...data].sort(
-            (a, b) =>
-              moment(b.created_at).format("YYYYMMDDHHmmss") -
-              moment(a.created_at).format("YYYYMMDDHHmmss")
-          )
-        );
-        setLoading(false);
-      }
-      if (sort === "oldest-newest") {
-        setReviews(
-          [...data].sort(
-            (a, b) =>
-              moment(a.created_at).format("YYYYMMDDHHmmss") -
-              moment(b.created_at).format("YYYYMMDDHHmmss")
-          )
-        );
-      }
-      if (sort === "votes_asc") {
-        setReviews([...data].sort((a, b) => a.votes - b.votes));
-      }
-      if (sort === "votes_desc") {
-        setReviews([...data].sort((a, b) => b.votes - a.votes));
-      }
-      if (sort === "comments_asc") {
-        setReviews([...data].sort((a, b) => a.comment_count - b.comment_count));
-      }
-      if (sort === "comments_desc") {
-        setReviews([...data].sort((a, b) => b.comment_count - a.comment_count));
-      }
+    getReviews(sortByOrder, sortByProperty, null).then((data) => {
+      setSearchParams(`order=${sortByOrder}&sort_by=${sortByProperty}`);
+      setReviews(data);
+      setLoading(false);
     });
-  }, [sort]);
+  }, [sortByOrder, sortByProperty]);
 
   if (loading === true) {
     return <section>Loading...</section>;
@@ -49,49 +30,48 @@ const Reviews = ({ reviews, setReviews }) => {
   if (loading === false) {
     return (
       <section>
-        Sort By:
-        <button
-          onClick={() => {
-            setSort("newest-oldest");
-          }}
-        >
-          newest to oldest
-        </button>
-        <button
-          onClick={() => {
-            setSort("oldest-newest");
-          }}
-        >
-          oldest to newest
-        </button>
-        <button
-          onClick={() => {
-            setSort("votes_asc");
-          }}
-        >
-          votes ascending
-        </button>
-        <button
-          onClick={() => {
-            setSort("votes_desc");
-          }}
-        >
-          votes Descending
-        </button>
-        <button
-          onClick={() => {
-            setSort("comments_asc");
-          }}
-        >
-          comment count ascending
-        </button>
-        <button
-          onClick={() => {
-            setSort("comments_desc");
-          }}
-        >
-          comment count Descending
-        </button>
+        <div>
+          order:
+          <button
+            onClick={() => {
+              setSortByOrder("ASC");
+            }}
+          >
+            Ascending
+          </button>
+          <button
+            onClick={() => {
+              setSortByOrder("DESC");
+            }}
+          >
+            Descending
+          </button>
+        </div>
+        <div>
+          order by:
+          <button
+            onClick={() => {
+              setSortByProperty("created_at");
+            }}
+          >
+            created_at
+          </button>
+          <button
+            onClick={() => {
+              setSortByProperty("votes");
+            }}
+          >
+            votes
+          </button>
+          <button
+            onClick={() => {
+              setSortByProperty("comment_count");
+            }}
+          >
+            comments
+          </button>
+        </div>
+
         <ul>
           {reviews.map((review) => {
             return (

@@ -6,7 +6,7 @@ const Nav = ({ categories, setCategories }) => {
     <nav>
       <section className="nav">
         <div>
-          <Link to="/"> All Reviews</Link>
+          <Link to="/reviews"> All Reviews</Link>
           <Link to="/users"> LogIn</Link>
         </div>
         <div>

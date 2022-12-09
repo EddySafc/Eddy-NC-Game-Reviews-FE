@@ -2,60 +2,29 @@ import { getReviews } from "../requests";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import moment from "moment";
 
-const DisplayCategories = ({ chosenCategory }) => {
+const DisplayCategories = ({
+  chosenCategory,
+  sortByOrder,
+  setSortByOrder,
+  sortByProperty,
+  setSortByProperty,
+}) => {
   const [categoryReviews, setCategoryReviews] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [sort, setSort] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    getReviews().then((allReviews) => {
-      let categoryFilter = allReviews.filter((review) => {
-        return review.category === chosenCategory;
-      });
-      if (sort === "newest-oldest" || sort === null) {
-        setCategoryReviews(
-          [...categoryFilter].sort(
-            (a, b) =>
-              moment(b.created_at).format("YYYYMMDDHHmmss") -
-              moment(a.created_at).format("YYYYMMDDHHmmss")
-          )
-        );
-
-        setLoading(false);
-      }
-      if (sort === "oldest-newest") {
-        setCategoryReviews(
-          [...categoryFilter].sort(
-            (a, b) =>
-              moment(a.created_at).format("YYYYMMDDHHmmss") -
-              moment(b.created_at).format("YYYYMMDDHHmmss")
-          )
-        );
-      }
-      if (sort === "votes_asc") {
-        setCategoryReviews(
-          [...categoryFilter].sort((a, b) => a.votes - b.votes)
-        );
-      }
-      if (sort === "votes_desc") {
-        setCategoryReviews(
-          [...categoryFilter].sort((a, b) => b.votes - a.votes)
-        );
-      }
-      if (sort === "comments_asc") {
-        setCategoryReviews(
-          [...categoryFilter].sort((a, b) => a.comment_count - b.comment_count)
-        );
-      }
-      if (sort === "comments_desc") {
-        setCategoryReviews(
-          [...categoryFilter].sort((a, b) => b.comment_count - a.comment_count)
-        );
-      }
+    getReviews(sortByOrder, sortByProperty, chosenCategory).then((data) => {
+      setSearchParams(
+        `order=${sortByOrder}&sort_by=${sortByProperty}&category=${chosenCategory}`
+      );
+      setCategoryReviews(data);
+      setLoading(false);
     });
-  }, [sort, chosenCategory]);
+  }, [chosenCategory, sortByOrder, sortByProperty]);
 
   if (loading === true) {
     return <section>Loading...</section>;
@@ -63,49 +32,47 @@ const DisplayCategories = ({ chosenCategory }) => {
   if (loading === false) {
     return (
       <section>
-        Sort By:
-        <button
-          onClick={() => {
-            setSort("newest-oldest");
-          }}
-        >
-          newest to oldest
-        </button>
-        <button
-          onClick={() => {
-            setSort("oldest-newest");
-          }}
-        >
-          oldest to newest
-        </button>
-        <button
-          onClick={() => {
-            setSort("votes_asc");
-          }}
-        >
-          votes ascending
-        </button>
-        <button
-          onClick={() => {
-            setSort("votes_desc");
-          }}
-        >
-          votes Descending
-        </button>
-        <button
-          onClick={() => {
-            setSort("comments_asc");
-          }}
-        >
-          comment count ascending
-        </button>
-        <button
-          onClick={() => {
-            setSort("comments_desc");
-          }}
-        >
-          comment count Descending
-        </button>
+        <div>
+          order:
+          <button
+            onClick={() => {
+              setSortByOrder("ASC");
+            }}
+          >
+            Ascending
+          </button>
+          <button
+            onClick={() => {
+              setSortByOrder("DESC");
+            }}
+          >
+            Descending
+          </button>
+        </div>
+        <div>
+          order by:
+          <button
+            onClick={() => {
+              setSortByProperty("created_at");
+            }}
+          >
+            created_at
+          </button>
+          <button
+            onClick={() => {
+              setSortByProperty("votes");
+            }}
+          >
+            votes
+          </button>
+          <button
+            onClick={() => {
+              setSortByProperty("comment_count");
+            }}
+          >
+            comments
+          </button>
+        </div>
         {categoryReviews.map((review) => {
           return (
             <ul className="specific_category_review">
