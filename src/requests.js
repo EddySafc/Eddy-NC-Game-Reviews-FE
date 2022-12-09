@@ -1,22 +1,12 @@
 import axios from "axios";
-
 export const getReviews = (order, property, category) => {
-  if (category === null)
-    return axios
-      .get(
-        `https://wandering-pink-gloves.cyclic.app/api/reviews?order=${order}&sort_by=${property}`
-      )
-      .then((reviews) => {
-        return reviews.data;
-      });
-  if (category !== null)
-    return axios
-      .get(
-        `https://wandering-pink-gloves.cyclic.app/api/reviews?order=${order}&sort_by=${property}&category=${category}`
-      )
-      .then((reviews) => {
-        return reviews.data;
-      });
+  return axios
+    .get(`https://wandering-pink-gloves.cyclic.app/api/reviews`, {
+      params: { order: order, sort_by: property, category: category },
+    })
+    .then((reviews) => {
+      return reviews.data;
+    });
 };
 
 export const getCategories = () => {

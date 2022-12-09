@@ -48,6 +48,7 @@ const DisplayCategories = ({
           >
             Descending
           </button>
+          order is: {sortByOrder}ENDING
         </div>
         <div>
           order by:
@@ -72,6 +73,7 @@ const DisplayCategories = ({
           >
             comments
           </button>
+          order is: {sortByProperty}
         </div>
         {categoryReviews.map((review) => {
           return (

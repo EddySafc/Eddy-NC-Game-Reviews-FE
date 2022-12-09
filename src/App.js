@@ -43,7 +43,7 @@ function App() {
               );
             })}
             <Route
-              path="/reviews"
+              path="/"
               element={
                 <Reviews
                   setSortByOrder={setSortByOrder}

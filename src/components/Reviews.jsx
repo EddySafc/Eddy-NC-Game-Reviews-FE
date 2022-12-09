@@ -46,6 +46,7 @@ const Reviews = ({
           >
             Descending
           </button>
+          Order is: {sortByOrder}ENDING
         </div>
         <div>
           order by:
@@ -70,6 +71,7 @@ const Reviews = ({
           >
             comments
           </button>
+          Order is: {sortByProperty}
         </div>
 
         <ul>
