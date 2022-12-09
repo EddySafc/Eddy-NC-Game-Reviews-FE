@@ -1,8 +1,9 @@
 import axios from "axios";
-
-export const getReviews = () => {
+export const getReviews = (order, property, category) => {
   return axios
-    .get("https://wandering-pink-gloves.cyclic.app/api/reviews")
+    .get(`https://wandering-pink-gloves.cyclic.app/api/reviews`, {
+      params: { order: order, sort_by: property, category: category },
+    })
     .then((reviews) => {
       return reviews.data;
     });

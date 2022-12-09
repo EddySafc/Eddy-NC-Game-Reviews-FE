@@ -16,6 +16,8 @@ function App() {
   const [comments, setComments] = useState([]);
   const [loggedInUser, setLoggedInUser] = useState("");
   const [categories, setCategories] = useState([]);
+  const [sortByOrder, setSortByOrder] = useState("ASC");
+  const [sortByProperty, setSortByProperty] = useState("created_at");
 
   return (
     <BrowserRouter>
@@ -28,13 +30,30 @@ function App() {
               return (
                 <Route
                   path={`/category/${category.slug}`}
-                  element={<DisplayCategories chosenCategory={category.slug} />}
+                  element={
+                    <DisplayCategories
+                      setSortByOrder={setSortByOrder}
+                      setSortByProperty={setSortByProperty}
+                      sortByOrder={sortByOrder}
+                      sortByProperty={sortByProperty}
+                      chosenCategory={category.slug}
+                    />
+                  }
                 />
               );
             })}
             <Route
               path="/"
-              element={<Reviews setReviews={setReviews} reviews={reviews} />}
+              element={
+                <Reviews
+                  setSortByOrder={setSortByOrder}
+                  setSortByProperty={setSortByProperty}
+                  sortByOrder={sortByOrder}
+                  sortByProperty={sortByProperty}
+                  setReviews={setReviews}
+                  reviews={reviews}
+                />
+              }
             />
 
             <Route path="/users" element={<Users />} />
