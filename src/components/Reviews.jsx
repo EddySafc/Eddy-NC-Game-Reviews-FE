@@ -16,6 +16,30 @@ const Reviews = ({
   const [loading, setLoading] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const addOrderButton = (order, buttonName) => {
+    return (
+      <button
+        onClick={() => {
+          setSortByOrder(order);
+        }}
+      >
+        {buttonName}
+      </button>
+    );
+  };
+
+  const addOrderByButton = (property, buttonName) => {
+    return (
+      <button
+        onClick={() => {
+          setSortByProperty(property);
+        }}
+      >
+        {buttonName}
+      </button>
+    );
+  };
+
   useEffect(() => {
     getReviews(sortByOrder, sortByProperty, null).then((data) => {
       setSearchParams(`order=${sortByOrder}&sort_by=${sortByProperty}`);
@@ -32,45 +56,15 @@ const Reviews = ({
       <section>
         <div>
           order:
-          <button
-            onClick={() => {
-              setSortByOrder("ASC");
-            }}
-          >
-            Ascending
-          </button>
-          <button
-            onClick={() => {
-              setSortByOrder("DESC");
-            }}
-          >
-            Descending
-          </button>
+          {addOrderButton("ASC", "Ascending")}
+          {addOrderButton("DESC", "Descending")}
           Order is: {sortByOrder}ENDING
         </div>
         <div>
           order by:
-          <button
-            onClick={() => {
-              setSortByProperty("created_at");
-            }}
-          >
-            created_at
-          </button>
-          <button
-            onClick={() => {
-              setSortByProperty("votes");
-            }}
-          >
-            votes
-          </button>
-          <button
-            onClick={() => {
-              setSortByProperty("comment_count");
-            }}
-          >
-            comments
-          </button>
+          {addOrderByButton("created_at", "created at")}
+          {addOrderByButton("votes", "votes")}
+          {addOrderByButton("comment_count", "comments")}
           Order is: {sortByProperty}
         </div>
 
