@@ -4,9 +4,15 @@ import { useEffect } from "react";
 import { useState } from "react";
 import moment from "moment";
 import AddComment from "./AddComment";
+import { deleteCommentById } from "../requests";
+import { useContext } from "react";
+import { logInContext } from "./Users";
 
 const ReviewComments = ({ comments, setComments }) => {
   const [loading, setLoading] = useState(true);
+  const [deleting, setDeleting] = useState(false);
+
+  const { loggedInUser, setLoggedInUser } = useContext(logInContext);
 
   let review_id = useParams().review_id;
 
@@ -25,6 +31,10 @@ const ReviewComments = ({ comments, setComments }) => {
           <AddComment comments={comments} setComments={setComments} />
         </section>
       );
+    }
+    if (deleting === true) {
+      console.log("deleting comment");
+      return <section>Deleting Comment...</section>;
     } else
       return (
         <section>
@@ -40,6 +50,18 @@ const ReviewComments = ({ comments, setComments }) => {
                     {moment(comment.created_at).format(`DD/MM/YY [at] HH:mm`)}
                   </p>
                   <p>Votes:{comment.votes}</p>
+                  <button
+                    onClick={() => {
+                      setDeleting(true);
+
+                      deleteCommentById(comment.comment_id).then(() => {
+                        setDeleting(false);
+                      });
+                    }}
+                    disabled={comment.author !== loggedInUser}
+                  >
+                    Delete
+                  </button>
                 </li>
               );
             })}

@@ -59,3 +59,8 @@ export const postReviewComment = (username, comment, review_id) => {
     }
   );
 };
+export const deleteCommentById = (comment_id) => {
+  return axios.delete(
+    `https://wandering-pink-gloves.cyclic.app/api/comments/${comment_id}`
+  );
+};
