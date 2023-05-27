@@ -35,7 +35,7 @@ To host this app yourself you can do so by following these instructions:
 - Open the terminal where ever you would like to store the files and type the following.
 
 ```
-git clone https://github.com/DavidH3031/DH-News-Project
+git clone (then paste)
 ```
 
 - Once that has completed you must install the dependencies by typing.
