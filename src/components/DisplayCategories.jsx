@@ -19,6 +19,7 @@ const DisplayCategories = ({
   const addOrderButton = (order, buttonName) => {
     return (
       <button
+        id="order-button"
         onClick={() => {
           setSortByOrder(order);
         }}
@@ -31,6 +32,7 @@ const DisplayCategories = ({
   const addOrderByButton = (property, buttonName) => {
     return (
       <button
+        id="order-button"
         onClick={() => {
           setSortByProperty(property);
         }}
@@ -56,13 +58,13 @@ const DisplayCategories = ({
   if (loading === false) {
     return (
       <section>
-        <div>
+        <div className="ordering">
           order:
           {addOrderButton("ASC", "Ascending")}
           {addOrderButton("DESC", "Descending")}
           Order is: {sortByOrder}ENDING
         </div>
-        <div>
+        <div className="ordering">
           order by:
           {addOrderByButton("created_at", "created at")}
           {addOrderByButton("votes", "votes")}

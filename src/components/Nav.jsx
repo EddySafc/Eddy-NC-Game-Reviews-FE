@@ -4,12 +4,18 @@ import Categories from "./Categories";
 const Nav = ({ categories, setCategories }) => {
   return (
     <nav>
-      <section className="nav">
-        <div>
-          <Link to="/"> All Reviews</Link>
-          <Link to="/users"> LogIn</Link>
+      <section>
+        <div className="nav">
+          <Link id="link" to="/">
+            {" "}
+            All Reviews
+          </Link>
+          <Link id="link" to="/users">
+            {" "}
+            LogIn
+          </Link>
         </div>
-        <div>
+        <div className="category-nav">
           <Categories categories={categories} setCategories={setCategories} />
         </div>
       </section>

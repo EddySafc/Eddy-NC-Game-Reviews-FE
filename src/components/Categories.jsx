@@ -15,7 +15,9 @@ const Categories = ({ categories, setCategories }) => {
         return (
           <ul>
             <li key={category.slug}>
-              <Link to={`/category/${category.slug}`}>{category.slug}</Link>
+              <Link id="link" to={`/category/${category.slug}`}>
+                {category.slug}
+              </Link>
             </li>
           </ul>
         );
